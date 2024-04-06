@@ -3,12 +3,36 @@ import pandas as pd
 import streamlit as st
 import openai
 import os
+import requests
 import joblib
 from langchain import llms
 from langchain.llms import OpenAI
 import spacy
 
 
+# Calling the pretrained model
+MODEL_URL = 'https://github.com/dkamp007/Capstone/blob/main/Logistic2_Smote_Model.joblib'
+
+# Function to download the model file
+def download_model(model_url, save_path):
+    try:
+        response = requests.get(model_url)
+        with open(save_path, 'wb') as f:
+            f.write(response.content)
+        print("Model downloaded successfully.")
+    except Exception as e:
+        print("Error downloading model:", e)
+
+# Path to save the downloaded model file
+model_path = 'Logistic2_Smote_Model.joblib'
+
+# Checking if the model file already exists
+if not os.path.exists(model_path):
+    # Download the model file
+    download_model(MODEL_URL, model_path)
+
+# Load the model
+model = joblib.load(model_path)
 
 # openai api key
 api = st.secrets['apikey']
@@ -353,12 +377,8 @@ if st.button("Predict"):
     # DataFrame with feature names as columns and a single row with corresponding values for prediction
     extracted_features_df = pd.DataFrame([feature_values], columns=feature_names)
 
-
-    # Loading the model & making prediction
-    model_path = os.environ.get('RFClassifier2_Smote_Model')
-    model = joblib.load(model_path)
-
-    llm = OpenAI(temperature=0.1)  # Adjust temperature as needed
+    # Initializing the llm
+    llm = OpenAI(temperature=0.1)
 
     # Using extracted_features_df for prediction
     prediction = model.predict(extracted_features_df)[0]

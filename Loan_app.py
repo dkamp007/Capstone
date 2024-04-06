@@ -12,7 +12,8 @@ import spacy
 
 
 # openai api key
-os.environ['OPENAI_API_KEY'] = apikey
+api = st.secrets['apikey']
+os.environ['OPENAI_API_KEY'] = api
 
 
 # Label encoding of the categorical features as defined in the pretrained model

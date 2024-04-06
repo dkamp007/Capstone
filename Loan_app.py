@@ -355,7 +355,7 @@ if st.button("Predict"):
 
 
     # Loading the model & making prediction
-    model_path = 'C:\\Users\\pauld\\Downloads\\Jupyter Notebook Classnotes\\Capstone_Project\\RFClassifier2_Smote_Model.joblib'
+    model_path = os.environ.get('RFClassifier2_Smote_Model')
     model = joblib.load(model_path)
 
     llm = OpenAI(temperature=0.1)  # Adjust temperature as needed

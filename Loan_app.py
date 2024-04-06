@@ -3,7 +3,6 @@ import pandas as pd
 import streamlit as st
 import openai
 import os
-from apikey import apikey
 import joblib
 from langchain import llms
 from langchain.llms import OpenAI

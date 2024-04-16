@@ -161,6 +161,14 @@ ltv = numericals_from_text.get('LTV')
 
 emi = numericals_from_text.get('EMI')
 
+
+# Checking if any numerical feature is missing
+missing_features = [key for key, value in numericals_from_text.items() if value is None]
+
+if missing_features:
+    st.warning(f"You haven't provided the following details: {', '.join(missing_features)}")
+
+
 col1, col2, col3, col4 = st.columns(4)
 col1.metric("**Income**", value=inc)
 col2.metric("**Tenure**", value=tenure)

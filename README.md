@@ -31,5 +31,44 @@ The app also uses **OpenAI's LLM** to explain the model’s decision in plain En
 
 ---
 
+## 📂 Directory Structure
+
+```
+Loan-Approval-Predictor/
+├── Loan_app.py # Main Streamlit app script
+├── Capstone_PreProcess_DKP_Final.ipynb # Preprocessed data
+├── Capstone_ML_Modelling_DKP-Final-Copy2.ipynb # ML model training
+├── Logistic2_Smote_Model.joblib # Pre-Trained model (auto-downloaded)
+├── README.md # Project overview
+└── requirements.txt # Python dependencies
+```
+---
+
+## 🔧 Setup Instructions
+
+**1.** Clone the repository
+
+```bash
+git clone https://github.com/dkamp007/Capstone.git
+cd Capstone
+```
+
+**2.** Install Dependencies
+```bash
+pip install -r requirements.txt
+python -m spacy download en_core_web_sm
+```
+
+**3.** Set your OpenAI API Key
+
+Create a `.streamlit/secrets.toml` file:
+```toml
+apikey = "your_openai_api_key"
+```
+
+**4.** Run the app
+```bash
+streamlit run Loan_app.py
+```
 
 Check out the [webapp!](https://dkamp007-capstone-loan-app-ejtmmg.streamlit.app/)
